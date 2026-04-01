@@ -19,7 +19,7 @@ router.post("/api/reset", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  return res.status(200).send();
+  return res.status(200).send("Ok");
 });
 
 module.exports = router;
