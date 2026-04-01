@@ -1,0 +1,9 @@
+POST http://localhost:3001/api/login
+Content-Type: application/json
+
+{
+    "username": "dotenv@gmail.com",
+    "password": "the_password"
+    //"title": "Writing Resilient Components",
+    //"likes": 10
+}

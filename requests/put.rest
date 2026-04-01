@@ -1,0 +1,6 @@
+PUT http://localhost:3001/api/users/Dan%20Abramov
+Content-Type: application/json
+
+{
+    "name": "10"
+}

@@ -1,0 +1,33 @@
+{
+  "name": "fs-databases",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Xenopus19/fs-databases#readme",
+  "bugs": {
+    "url": "https://github.com/Xenopus19/fs-databases/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xenopus19/fs-databases.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "node --test --test-concurrency=1 tests/api_ch3.test.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "axios": "^1.14.0",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.20.0",
+    "sequelize": "^6.37.8"
+  }
+}
