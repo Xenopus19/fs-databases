@@ -1,39 +1,11 @@
 const { Blog, User } = require("../models");
-const jwt = require("jsonwebtoken");
-const { SECRET } = require("../util/config");
 const { Op } = require("sequelize");
-const { sequelize } = require("../util/db");
+const { tokenExtractor } = require("../util/tokenExtractor");
+const blogFinder = require("../util/blogFinder");
+const sessionCheck = require("../util/sessionCheck");
 const router = require("express").Router();
 
-const tokenExtractor = (req, res, next) => {
-  const authorization = req.get("authorization");
-  if (authorization && authorization.toLowerCase().startsWith("bearer ")) {
-    try {
-      req.decodedToken = jwt.verify(authorization.substring(7), SECRET);
-    } catch {
-      return res.status(401).json({ error: "token invalid" });
-    }
-  } else {
-    return res.status(401).json({ error: "token missing" });
-  }
-  next();
-};
-
-const blogFinder = async (req, res, next) => {
-  try {
-    req.blog = await Blog.findByPk(req.params.id);
-    if (!req.blog) {
-      const error = new Error("BlogNotFound");
-      error.name = "BlogNotFound";
-      return next(error);
-    }
-    next();
-  } catch (error) {
-    next(error);
-  }
-};
-
-router.post("/", tokenExtractor, async (req, res, next) => {
+router.post("/", tokenExtractor, sessionCheck, async (req, res, next) => {
   try {
     const blog = await Blog.create({
       ...req.body,
@@ -77,7 +49,7 @@ router.get("/", async (req, res) => {
   res.json(blogs);
 });
 
-router.delete("/:id", tokenExtractor, blogFinder, async (req, res, next) => {
+router.delete("/:id", tokenExtractor, blogFinder, sessionCheck, async (req, res, next) => {
   try {
     if (req.decodedToken.id !== req.blog.userId) {
       return res

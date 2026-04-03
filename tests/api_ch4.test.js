@@ -290,11 +290,10 @@ describe('Session Management API', () => {
   
   it('multiple logins create separate sessions', async () => {
     const token1 = await login('session@example.com', 'sessionpass')
-    await sleep(1100)
+    await sleep(3000)
     const token2 = await login('session@example.com', 'sessionpass')
     
     assert.notStrictEqual(token1, token2)
-    
     const newBlog1 = {
       title: 'Blog with First Token',
       author: 'Token1',

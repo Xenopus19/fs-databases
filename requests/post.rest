@@ -1,10 +1,9 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRvdGVudkBnbWFpbC5jb20iLCJpZCI6MSwiaWF0IjoxNzc1MDI2NTY3fQ.26_Q-ddSfw_bPxdi-ysb1rD06iv2-2EJaTL74gARI18
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRvdGVubEBnbWFpbC5jb20iLCJpZCI6ODIsImlhdCI6MTc3NTIwNDgwNX0._oEuCGtnGklGt0fB_6IxYehOnmW3jCoFFJlg_sVo5Yc
 
 {
-    "author": "dotenl.com",
-    "url": "https://=",
-    "title": "REACT",
-    "likes": 20
+    "title": "Blog with Second Token",
+    "author": "Token2",
+    "url": "https://example.com/token2"
 }

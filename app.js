@@ -4,6 +4,8 @@ const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const authorsRouter = require('./controllers/authors')
 const testRouter = require('./controllers/test')
+const readingListRouter = require('./controllers/readingLists')
+const logoutRouter = require('./controllers/logout')
 const app = express()
 app.use(express.json())
 
@@ -18,6 +20,9 @@ const errorHandler = (error, request, response, next) => {
     }
     else if(error.errors[0].message === 'users.username cannot be null') {
       return response.status(400).send({ error: 'Username is absent.'})
+    }
+    else if(error.errors[0].message === 'Validation max on year failed' || error.errors[0].message === 'Validation min on year failed') {
+      return response.status(400).send({ error: 'Year should be more than 1991 but less or equal current year.'})
     }
     else{
       return response.status(400).send({ error: 'Some values are malformatted or missing.'})
@@ -42,6 +47,8 @@ app.use('/api/blogs', blogsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/authors', authorsRouter)
+app.use('/api/readingLists', readingListRouter)
+app.use('/api/logout', logoutRouter)
 app.use('/', testRouter)
 
 app.use(errorHandler)
